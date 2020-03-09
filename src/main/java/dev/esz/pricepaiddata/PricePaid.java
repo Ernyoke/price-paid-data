@@ -1,6 +1,9 @@
 package dev.esz.pricepaiddata;
 
 import com.opencsv.bean.CsvBindByPosition;
+import com.opencsv.bean.CsvCustomBindByPosition;
+
+import java.time.LocalDate;
 
 public class PricePaid {
     @CsvBindByPosition(position = 0)
@@ -9,8 +12,8 @@ public class PricePaid {
     @CsvBindByPosition(position = 1)
     private Integer price;
 
-    @CsvBindByPosition(position = 2)
-    private String dateOfTransfer;
+    @CsvCustomBindByPosition(position = 2, converter = DateConverter.class)
+    private LocalDate dateOfTransfer;
 
     @CsvBindByPosition(position = 3)
     private String postCode;
@@ -70,11 +73,11 @@ public class PricePaid {
         this.price = price;
     }
 
-    public String getDateOfTransfer() {
+    public LocalDate getDateOfTransfer() {
         return dateOfTransfer;
     }
 
-    public void setDateOfTransfer(String dateOfTransfer) {
+    public void setDateOfTransfer(LocalDate dateOfTransfer) {
         this.dateOfTransfer = dateOfTransfer;
     }
 
